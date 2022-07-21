@@ -1,30 +1,13 @@
 const fs = require('fs');
-const { exec,spawn,spawnSync } = require("child_process");
-const isClean = require('git-is-clean')
+const { spawn } = require("child_process");
 
 
 const CrReset  = "\x1b[0m"
 const FgYellow = "\x1b[33m"
 const FgWhite  = "\x1b[1m"
-
-const format   =(e)=> `\n${LINE}${e}\n${LINE}`
 const debug    =(e)=> console.log(`${FgYellow}${e}${CrReset}`)
 const succ     =(e)=> console.log(`${FgWhite}${e}${CrReset}`)
-
-const LINE         = `------------------\n`
-const INFO_COMMIT  = format('请先提交代码!')
-const INFO_ESLINT  = format('检查代码规范...')
-const INFO_PRETTEY = format('格式化代码中...')
-const INFO_VERSION = format('修改工程版本!')
-const INFO_BUILD   = format('编译代码中...')
-const INFO_PUSH    = format('提交代码中...')
-const ERR_FILE     = `err_eslint`
 const PKG_FILE     = `package.json`
-const CMD_ESLINT   = `npm run eslint`
-const CMD_ADDFILE  = `git add .`
-const CMD_PRETTEY  = `npm run prettier`
-const CMD_BUILD    = `npm run build`
-const CMD_PUSH     = `npm publish`
 
 const cmd = async(CMD,info)=>{
   return new Promise(resolve => {
